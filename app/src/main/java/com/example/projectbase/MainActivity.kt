@@ -1,10 +1,13 @@
 package com.example.projectbase
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.projectbase.App.Companion.context
 import com.example.projectbase.adapters.DealsAdapter
@@ -12,6 +15,7 @@ import com.example.projectbase.models.Deal
 import com.example.projectbase.models.Deals
 import com.example.projectbase.viewmodels.DealsViewModel
 import com.example.projectbase.viewmodels.ViewModelFactory
+import com.example.projectbase.views.GameActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -29,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         (application as App).getAppComponent().inject(this)
         dealsViewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(DealsViewModel::class.java)
+            ViewModelProvider(this, viewModelFactory).get(DealsViewModel::class.java)
 
 
         dealsViewModel.stateConexionInternet()
@@ -45,7 +49,15 @@ class MainActivity : AppCompatActivity() {
         dealsViewModel.responseLiveDataGetDeals.observe(this,
             Observer { deals -> showDeals(deals) })
     }
+    fun openClick (view: View){
 
+
+            context?.showToast("button")
+            val intent = Intent(this,GameActivity::class.java)
+            startActivity(intent)
+
+
+    }
 
     private fun setDeals(deals: List<Deals>) {
         if (!deals.isNullOrEmpty()) {
@@ -71,5 +83,6 @@ class MainActivity : AppCompatActivity() {
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show()
 
     }
+
 
 }
