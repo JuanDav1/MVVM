@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -19,11 +20,12 @@ import com.example.projectbase.models.Deal
 import com.example.projectbase.models.Deals
 import kotlinx.android.synthetic.main.item_deals.view.*
 
-class DealsAdapter(var mDeals: List<Deal>, var context: Context) :
+class DealsAdapter(var mDeals: List<Deal>, var context: Context,  var listener: DealsAdapter.onDealsListener) :
     RecyclerView.Adapter<DealsAdapter.ViewHolder>() {
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         var name: TextView = view.image_text
         var image: ImageView = view.image_game
+        var cardView : CardView = view.CardView_game
 
         fun bind(deal:Deal){
             name.text = deal.name
@@ -59,9 +61,18 @@ class DealsAdapter(var mDeals: List<Deal>, var context: Context) :
         return mDeals.count()
     }
 
+
+    interface onDealsListener{
+        fun gameClickListener(nombre : String, view: View)
+
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
        val item = mDeals[position]
         holder.bind(item)
+        holder.cardView.setOnClickListener {
+            listener.gameClickListener(item.name, it)
+        }
     }
 
 }
