@@ -12,7 +12,6 @@ import com.example.projectbase.models.NetworkConnection
 import com.example.projectbase.models.OperationResult
 import com.example.projectbase.repositories.LocalReposiroty
 import com.example.projectbase.repositories.RemoteRepository
-import com.example.projectbase.utils.ConnectivityOnline
 import com.example.projectbase.utils.ConnectivityOnlineLiveData
 import kotlinx.coroutines.*
 
@@ -27,7 +26,6 @@ class DealsViewModel(private val remoteRepository: RemoteRepository, private val
             connectivity = ConnectivityOnlineLiveData( App.context as Application)
         }
 
-    private  var connectionInstance : ConnectivityOnline = ConnectivityOnline()
 
     private val _responseLiveDataDeals = MutableLiveData<List<Deals>>()
     val responseLiveDataDeals: LiveData<List<Deals>> = _responseLiveDataDeals
@@ -101,12 +99,7 @@ class DealsViewModel(private val remoteRepository: RemoteRepository, private val
             Log.i("db", "Error")
         }
     }
-
-    fun connection(){
-        connectionInstance.let {
-            _connection.value  = it.enable()
-        }
-    }
+    
 
     /*@Suppress("DEPRECATION")
     fun stateConexionInternet(){
