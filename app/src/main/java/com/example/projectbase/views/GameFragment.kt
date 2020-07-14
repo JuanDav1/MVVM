@@ -1,18 +1,15 @@
 package com.example.projectbase.views
 
-import android.content.Context
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.example.projectbase.App
 
 import com.example.projectbase.R
+import com.example.projectbase.viewmodels.GameViewModel
 import kotlinx.android.synthetic.main.game_fragment.*
 
 class GameFragment : Fragment() {

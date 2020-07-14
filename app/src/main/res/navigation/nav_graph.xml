@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/informationFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/informationFragment"
-        android:name="com.example.projectbase.views.InformationFragment"
+        android:id="@+id/loginFragment"
+        android:name="com.example.projectbase.views.LoginFragment"
         android:label="information_fragment"
-        tools:layout="@layout/information_fragment" >
+        tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/to_gameFragment"
             app:destination="@id/gameFragment"
             app:enterAnim="@android:anim/fade_in"
-            app:popUpTo="@id/informationFragment"
+            app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
 
     </fragment>
